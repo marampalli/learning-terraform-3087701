@@ -14,6 +14,17 @@ data "aws_ami" "app_ami" {
   owners = ["979382823631"] # Bitnami
 }
 
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+
+  bucket = "my-s3-bucket-test-01"
+  acl    = "private"
+
+  versioning = {
+    enabled = true
+  }
+
+}
 #resource "aws_instance" "blog" {
 #  ami           = data.aws_ami.app_ami.id
 #  instance_type = var.instance_type
